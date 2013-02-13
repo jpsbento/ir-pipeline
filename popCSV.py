@@ -1,10 +1,13 @@
+#!/usr/bin/python
 
 import os
 import pyfits
 import tools # from tools.py
+import jpb
+import pdb
+import numpy as np
 
-
-path = "C217N2/" # path to root of directory to walk through, relative to location of script
+path = jpb.ask('Which directory to run this code?','.') # path to root of directory to walk through, relative to location of script
 outfile = path + "testMedian.csv" # the output file to write to
 
 keys = ["FILTER", \
@@ -40,12 +43,8 @@ operations = ["MULTISAM", \
 colheads = ["DIRECTORY", \
             "FILENAME" \
            ]
-# the next entries will be all of the header keywords
-for i in keys:
-    colheads.append(i)
-# finish it off with the manual operations done
-for i in operations:
-    colheads.append(i)
+
+colheads=colheads+keys+operations
 
 ########################
 # Begin main part of the script
@@ -60,6 +59,9 @@ with open(outfile,'w') as f:
 
     # Use the walk command to step through all of the files in all directories starting at the "root" defined above
     for root, dirs, files in os.walk(path):
+        print 'Surveying directory ',root
+        pb=jpb.progressbarClass(np.size(files)-1)
+        j=0
         for name in files:
             if "fits.gz" in name:
                 pathAndName = os.path.join(root,name)
@@ -97,3 +99,5 @@ with open(outfile,'w') as f:
 
                 line = "\n" + ",".join(values)
                 f.write(line)
+            j+=1
+            pb.progress(j)
