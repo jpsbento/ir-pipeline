@@ -7,7 +7,7 @@ import jpb
 import pdb
 import numpy as np
 
-path = jpb.ask('Which directory to run this code?','.') # path to root of directory to walk through, relative to location of script
+path = jpb.ask('Which directory to run this code?','./') # path to root of directory to walk through, relative to location of script
 outfile = path + "testMedian.csv" # the output file to write to
 
 keys = ["FILTER", \
