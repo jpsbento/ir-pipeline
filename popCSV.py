@@ -1,25 +1,32 @@
 #!/usr/bin/python
 
 import os
-import pyfits
+import fitsio
 import tools # from tools.py
-import jpb
+import jpb, time
 import pdb
 import numpy as np
+
+print 'Program started at time:'
+print time.asctime( time.localtime(time.time()) )
 
 path = jpb.ask('Which directory to run this code?','./') # path to root of directory to walk through, relative to location of script
 outfile = path + "testMedian.csv" # the output file to write to
 
 keys = ["FILTER", \
+        "EFFWAVE", \
         "OBJECT", \
         "TARGNAME", \
         "CAMNAME", \
+        "IMAGETYP", \
         "COADDS", \
         "ITIME", \
         "DATE-OBS", \
         "MJD-OBS", \
         "UTC", \
         "EL", \
+        "RA", \
+        "DEC", \
         "NAXIS1", \
         "NAXIS2", \
         "PIXSCALE", \
@@ -65,15 +72,15 @@ with open(outfile,'w') as f:
         for name in files:
             if "fits.gz" in name:
                 pathAndName = os.path.join(root,name)
-                prihdr = pyfits.getheader(pathAndName) # get the primary header and values
-                image = pyfits.getdata(pathAndName) # get the image data to be analysed
+                prihdr = fitsio.read_header(pathAndName) # get the primary header and values
+                image = fitsio.read(pathAndName) # get the image data to be analysed
                 values = [root, name] # The first two entries for the row
                 #extract values from header in keys
                 for i in keys:
                     try:
                         values.append(str(prihdr[i]))
                         
-                    except KeyError:
+                    except Exception:
                         values.append("")
                 
                 #start with manual operations
@@ -101,3 +108,7 @@ with open(outfile,'w') as f:
                 f.write(line)
             j+=1
             pb.progress(j)
+
+
+print 'Program finished at time:'
+print time.asctime( time.localtime(time.time()) )
