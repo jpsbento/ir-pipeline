@@ -1,5 +1,5 @@
 cimport numpy as np
-import jpb, pdb, os, fitsio
+import jpb, pdb, os, fitsio, pyfits
 import tools
 
 @profile
@@ -19,8 +19,12 @@ cdef int popCSV(keys,operations,colheads,path,outfile):
             for name in files:
                 if "fits.gz" in name:
                     pathAndName = os.path.join(root,name)
-                    prihdr = fitsio.read_header(pathAndName) # get the primary header and values
-                    np.ndarray[np.float64_t, ndim=2] image = fitsio.read(pathAndName) # get the image data to be analysed
+                    try: 
+		    	 prihdr = pyfits.read_header(pathAndName) # get the primary header and values
+                    	 np.ndarray[np.float64_t, ndim=2] image = pyfits.read(pathAndName) # get the image data to be analysed
+		    except Exception:
+		    	 prihdr = fitsio.read_header(pathAndName) # get the primary header and values
+                    	 np.ndarray[np.float64_t, ndim=2] image = fitsio.read(pathAndName) # get the image data to be analysed
                     values = [root, name] # The first two entries for the row
                     #extract values from header in keys
                     for i in keys:
