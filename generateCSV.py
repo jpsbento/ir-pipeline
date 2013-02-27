@@ -1,7 +1,6 @@
 #!/usr/bin/python
 
-import pyximport; pyximport.install()
-import tools # from tools.py
+#import pyximport; pyximport.install()
 import popCSV
 import time, jpb
 
