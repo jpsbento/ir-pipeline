@@ -7,7 +7,7 @@ import time, jpb
 print 'Program started at time:'
 print time.asctime( time.localtime(time.time()) )
 
-path = jpb.ask('Which directory to run this code?','./') # path to root of directory to walk through, relative to location of script
+path = './'#jpb.ask('Which directory to run this code?','./') # path to root of directory to walk through, relative to location of script
 outfile = path + "datainfo.csv" # the output file to write to
 
 keys = ["FILTER", \

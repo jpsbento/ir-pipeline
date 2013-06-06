@@ -1,0 +1,6 @@
+Do we need to interpolate over bad pixels? 
+
+Is using darks with different exposures and scaling ok? Normally, bias would be subtracted, and remained would be dark current, but here I'm not sure
+
+Should I include the possibility of specifying a dark, flat or bad pixel mask?
+

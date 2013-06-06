@@ -62,6 +62,8 @@ def popCSV(keys,operations,colheads,path,outfile):
 
                     line = "\n" + ",".join(values)
                     f.write(line)
+                    g.write(line)
+                
                 j+=1
                 pb.progress(j)
         return 1

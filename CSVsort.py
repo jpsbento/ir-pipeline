@@ -1,13 +1,15 @@
+#!/usr/bin/python
+
 # preliminary version to build a CSV with relevant information mainly from fits headers
 # "saturated" will be added as a function using median pixel and dividing by coadds
 # then checking for the peak value being below some threshold (20,000?)
 
 
 #import sort_tools
-import csv
+import csv, jpb
 
-path = "testing/" # path to root of directory to walk through
-infile = path + "testMedian.csv" # the input file to read from
+path = jpb.ask('Which directory to run this code?','./') # path to root of directory to walk through, relative to location of script
+infile = path + "datainfo.csv" # the input file to read from
 outfile = path + "filteredCSV.csv" # the output file to write to
 
 #column headers as of 31/12/12 in popCSV
