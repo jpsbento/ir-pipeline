@@ -1,6 +1,6 @@
 import numpy as np
 cimport numpy as np
-import jpb, pdb, os, fitsio, pyfits
+import pbclass, pdb, os, fitsio, pyfits
 import tools
 
 def popCSV(keys,operations,colheads,path,outfile):
@@ -17,7 +17,7 @@ def popCSV(keys,operations,colheads,path,outfile):
         # Use the walk command to step through all of the files in all directories starting at the "root" defined above
         for root, dirs, files in tools.sortedWalk(path):
             print 'Surveying directory ',root
-            pb=jpb.progressbarClass(np.size(files)-1)
+            pb=pbclass.progressbarClass(np.size(files)-1)
             j=0
             for name in files:
                 if "fits.gz" in name:
