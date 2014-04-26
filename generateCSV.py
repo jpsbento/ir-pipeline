@@ -2,7 +2,7 @@
 
 #import pyximport; pyximport.install()
 import popCSV
-import time, jpb
+import time#, jpb
 
 print 'Program started at time:'
 print time.asctime( time.localtime(time.time()) )
