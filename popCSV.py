@@ -1,6 +1,5 @@
 import numpy as np
-import numpy as np
-import pbclass, pdb, os, fitsio, pyfits
+import pbclass, os, pyfits
 import tools
 
 def popCSV(keys,operations,colheads,path,outfile):
@@ -18,12 +17,11 @@ def popCSV(keys,operations,colheads,path,outfile):
             for name in files:
                 if "fits.gz" in name:
                     pathAndName = os.path.join(root,name)
-                    try: 
-                         prihdr = pyfits.read_header(pathAndName) # get the primary header and values
-                         image = pyfits.read(pathAndName) # get the image data to be analysed
+                    try:
+                        prihdr = pyfits.read_header(pathAndName,ignore_missing_end=True) # get the primary header and values
+                        image = pyfits.read(pathAndName,ignore_missing_end=True) # get the image data to be analysed
                     except Exception:
-                         prihdr = fitsio.read_header(pathAndName) # get the primary header and values
-                         image = fitsio.read(pathAndName) # get the image data to be analysed
+                        print 'Unable to open fits file'
                     values = [root, name] # The first two entries for the row
                     #extract values from header in keys
                     for i in keys:
