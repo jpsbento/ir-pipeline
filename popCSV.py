@@ -18,8 +18,8 @@ def popCSV(keys,operations,colheads,path,outfile):
                 if "fits.gz" in name:
                     pathAndName = os.path.join(root,name)
                     try:
-                        prihdr = pyfits.read_header(pathAndName,ignore_missing_end=True) # get the primary header and values
-                        image = pyfits.read(pathAndName,ignore_missing_end=True) # get the image data to be analysed
+                        prihdr = pyfits.getheader(pathAndName,ignore_missing_end=True) # get the primary header and values
+                        image = pyfits.getdata(pathAndName,ignore_missing_end=True) # get the image data to be analysed
                     except Exception:
                         print 'Unable to open fits file'
                     values = [root, name] # The first two entries for the row
