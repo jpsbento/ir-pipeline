@@ -1,6 +1,7 @@
 import numpy as np
 import pbclass, os, pyfits
-import tools
+import tools, warnings
+warnings.filterwarnings('ignore')
 
 def popCSV(keys,operations,colheads,path,outfile):
     with open(outfile,'w') as f:
@@ -56,7 +57,7 @@ def popCSV(keys,operations,colheads,path,outfile):
 
                     line = "\n" + ",".join(values)
                     f.write(line)
-                    g.write(line)
+                    #g.write(line)
                 
                 j+=1
                 pb.progress(j)
