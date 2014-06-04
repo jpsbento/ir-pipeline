@@ -1,5 +1,6 @@
 #!/usr/bin/python
 
+#This is the cython implementation of the code. 
 #import pyximport; pyximport.install()
 import popCSV
 import time#, jpb
