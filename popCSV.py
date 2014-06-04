@@ -1,5 +1,5 @@
 import numpy as np
-cimport numpy as np
+import numpy as np
 import pbclass, pdb, os, fitsio, pyfits
 import tools
 

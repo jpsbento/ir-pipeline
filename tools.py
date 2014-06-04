@@ -1,5 +1,5 @@
 import numpy as np
-cimport numpy as np
+import numpy as np
 import pdb
 
 def filter_image(np.ndarray[np.int32_t, ndim=2] image):
