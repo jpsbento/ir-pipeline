@@ -4,10 +4,6 @@ import pbclass, pdb, os, fitsio, pyfits
 import tools
 
 def popCSV(keys,operations,colheads,path,outfile):
-    cdef int j
-    cdef np.ndarray[np.int32_t, ndim=2] image
-    cdef np.ndarray[np.float64_t, ndim=2] filtered
-    cdef int threshold
     with open(outfile,'w') as f:
         # write out the column headers to the file.
 
