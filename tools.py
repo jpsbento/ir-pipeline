@@ -2,7 +2,7 @@ import numpy as np
 import numpy as np
 import pdb
 
-def filter_image(np.ndarray[np.int32_t, ndim=2] image):
+def filter_image(image):
         image1 = np.roll(image,1,0)
         image2 = np.roll(image,-1,0)
         cube = np.ndarray((image.shape[0],image.shape[1],9))
@@ -17,7 +17,7 @@ def filter_image(np.ndarray[np.int32_t, ndim=2] image):
         cube[:,:,8] = np.roll(image2,-1,1)
         return np.median(cube,2)
 
-def peak_coords(np.ndarray[np.float64_t, ndim=2] image):
+def peak_coords(image):
 # takes a numpy array and returns the x,y coords of the peak value
 # takes the median filtered image from filter_image() as input
     shape = np.shape(image)
